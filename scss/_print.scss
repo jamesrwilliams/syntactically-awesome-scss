@@ -1,0 +1,18 @@
+// Printer Friendly Styles Go In Here
+
+body {
+	
+	font-family: Georgia, serif;
+	background: none;
+	color: black;
+	
+} 
+
+// This little gem of a rule prints
+// the URL of an A link when the page
+// is printed. Usefull to anyone? Who
+// prints a website nowadays?
+
+a:after {
+	content: " [" attr(href) "] ";
+}

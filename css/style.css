@@ -1,0 +1,226 @@
+/* 
+
+	--------------------------------------------------
+	>> Syntactically Awesome Style Sheets (SCSS) Demo
+	>> @James_RWilliams
+	>> 22/01/2014
+	--------------------------------------------------
+	>> Installing SCSS
+	
+	Head over to http://sass-lang.com/install for
+	applications that can compile SCSS for you.
+	
+	For Mac I would reccoment CodeKit: 
+	http://incident57.com/codekit/
+	
+	A PC alterntive is Scout which is a top Open
+	Source project on github.
+	http://mhs.github.io/scout-app/
+	--------------------------------------------------
+	
+	
+	PARTIALS / IMPORTS 
+	==================
+	
+	These imports load in external scss (partials). 
+	They load them in relativly to the location in 
+	the sheet so you should only use references to 
+	their content after. I.e include your Colours 
+	sheet before using a colour.
+	
+	You can import files individully or list them 
+	togeather if there are multiple. The extension 
+	and underbars are optional when importing. 
+	They are needed for the actual source files.
+	
+	
+*/
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.4em;
+  text-shadow: 0 1px 0 #FFF;
+}
+
+h1 {
+  font-family: 'Lato', sans-serif;
+}
+
+header h1 {
+  margin: 0;
+}
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #F0F0F0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrapper {
+  max-width: 960px;
+  padding: 0 10px;
+  margin: 0 auto;
+}
+
+/* 
+
+	NESTED RULES
+	============
+	
+	Below is an example of SCSS' use of nested rules.
+	Nesting a selector inside a parent targets only 
+	those elements within a parent that matches. 
+	For example the following CSS:
+	
+	*
+	*	header h1 {	font-size: 2.3em; }
+	*
+	
+	Is the same as the following SCSS:
+	
+	*
+	*	header {
+	*	
+	*		h1 {
+	*		
+	*			font-size: 2.3em;
+	*		
+	*		}
+	*	
+	*	}
+	*
+	
+	Think of it as a decendant selctor but without
+	having to repeatledly write out the parent 
+	elelments id or class.
+		
+
+*/
+header {
+  background: #232021;
+  color: white;
+  padding: 20px;
+  text-shadow: none;
+}
+header h1 {
+  text-align: center;
+  line-height: normal;
+  font-size: 2.3em;
+}
+header nav {
+  margin-top: 20px;
+}
+header nav a {
+  margin-right: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  color: inherit;
+}
+header nav a:hover {
+  text-decoration: underline;
+}
+
+/*
+
+	MIXINS
+	======
+	
+	These are functions/methods of the CSS world. You
+	can write these "functions" to accept a parameter, 
+	and when compiled the calcualted value will take 
+	its place. 
+	
+	See the _mixins.scss file in the SCSS folder for 
+	how to write these functions.
+
+*/
+.feedback, .success, .error, .warning {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  text-align: center;
+  font-weight: bold;
+  padding: 10px;
+  width: 250px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  color: white;
+  text-shadow: none;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+
+/* 
+
+	EXTEND
+	======
+
+	These allow parts of SCSS allow you to in essance
+	load in small snippets of CSS and then add aditional
+	ones after. This opperation often replaces to add 
+	multiple classes for a single change. See the 
+	Sucess / Warning / Error example in the index.html 
+	file.
+	
+	i.e - the example below creates three similar classes
+	but with different background colours.
+
+
+	VARIABLES
+	=========
+
+	This is one of those life-saving parts of SCSS. You 
+	can decalir values to variables then use them 
+	repeatidly through the document. For example here 
+	I have set the background colours to $red, $blue, 
+	and $green. The HEX colour values have been assigned 
+	to the variables in the _colours import at the top 
+	of the page, so anywhere I use the $red variable, 
+	when compiled, it will give compile with #EA5750 
+	in its place.
+	
+	See the _colours.scss file for how to assign variables.
+
+*/
+.success {
+  background-color: #4fb065;
+}
+
+.error {
+  background-color: #ea5750;
+}
+
+.warning {
+  background-color: #2ac1db;
+}
+
+/*
+
+	NESTED IMPORTS
+	==============
+
+	You can also import SCSS partial files in media queries.
+	Really good way to separate large project files between 
+	teams.
+
+*/
+@media print {
+  body {
+    font-family: Georgia, serif;
+    background: none;
+    color: black;
+  }
+
+  a:after {
+    content: " [" attr(href) "] ";
+  }
+}
